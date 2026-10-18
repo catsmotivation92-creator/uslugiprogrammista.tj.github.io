@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Разработка сайтов и сервисов под задачи бизнеса" />
+  <title>code.works — разработка для бизнеса</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#151719; --muted:#6f716d; --lime:#d7ff39; --paper:#f5f4ef; --white:#fffefa; --line:rgba(21,23,25,.14); --surface:#deded8; --case-dark:#20252a; --case-blue:#7399ba; }
+    [data-theme="dark"] { --ink:#f7f7f2; --muted:#b1b1aa; --lime:#d7ff39; --paper:#101111; --white:#1a1b1b; --line:rgba(247,247,242,.18); --surface:#202120; --case-dark:#f4f4ef; --case-blue:#343635; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Manrope,Arial,sans-serif; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1180px, calc(100% - 48px)); margin:auto; }
+    .nav { height:88px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .nav-actions { display:flex; align-items:center; gap:12px; }
+    .logo { font:700 18px/1 Unbounded,sans-serif; letter-spacing:-1px; }
+    .logo i { color:#749000; font-style:normal; }
+    .nav-links { display:flex; align-items:center; gap:28px; font-size:13px; font-weight:700; }
+    .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.5; }
+    .button { border:1px solid var(--ink); background:var(--ink); color:var(--white); border-radius:100px; display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; font-size:13px; font-weight:800; letter-spacing:.01em; transition:transform .2s, background .2s, color .2s; }
+    .button:hover { transform:translateY(-3px); background:var(--lime); color:var(--ink); }
+    .theme-toggle { width:48px; height:48px; border:1px solid var(--line); border-radius:50%; background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:19px; transition:transform .2s, background .2s; }
+    .theme-toggle:hover { transform:rotate(18deg); background:var(--white); }
+    .hero { min-height:635px; padding:65px 0 75px; position:relative; display:flex; flex-direction:column; justify-content:space-between; isolation:isolate; }
+    .hero:before { content:""; position:absolute; z-index:0; top:23px; right:-70px; bottom:20px; left:36%; border-radius:18px 0 0 18px; background-image:linear-gradient(90deg, var(--paper) 0%, transparent 67%), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85'); background-size:cover; background-position:center; filter:grayscale(1) contrast(1.08); opacity:.72; }
+    .hero > * { position:relative; z-index:1; }
+    [data-theme="dark"] .hero:before { filter:grayscale(1) brightness(.68) contrast(1.2); opacity:.56; }
+    .eyebrow { display:flex; align-items:center; gap:10px; color:var(--muted); font-weight:800; font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+    .pulse { display:block; width:9px; height:9px; background:#93bb00; border-radius:50%; box-shadow:0 0 0 5px rgba(147,187,0,.15); }
+    h1 { max-width:1050px; margin:23px 0 26px; font:600 clamp(39px,6.45vw,88px)/1.04 Unbounded,sans-serif; letter-spacing:-.065em; }
+    h1 .marker { display:inline-block; background:var(--lime); padding:0 .1em 0 .04em; transform:rotate(-2deg); white-space:nowrap; }
+    .hero-bottom { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; }
+    .intro { margin:0; max-width:405px; color:var(--muted); line-height:1.65; font-size:16px; }
+    .hero-orbit { width:231px; height:231px; border:1px solid var(--line); border-radius:50%; position:relative; flex:none; margin-right:70px; }
+    .hero-orbit:before { content:""; position:absolute; inset:37px; border:1px dashed var(--line); border-radius:50%; }
+    .hero-orbit:after { content:"✦"; position:absolute; top:15px; right:4px; font-size:27px; color:#8eae00; animation:spin 8s linear infinite; }
+    .orbit-core { width:68px; height:68px; background:var(--lime); border-radius:50%; position:absolute; top:81px; left:81px; display:grid; place-items:center; font:700 23px/1 Unbounded; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .band { background:var(--ink); color:var(--white); overflow:hidden; padding:18px 0; white-space:nowrap; }
+    .band-inner { display:inline-block; min-width:100%; font:600 18px/1.4 Unbounded; letter-spacing:-.05em; animation:marquee 20s linear infinite; }
+    .band b { color:var(--lime); margin:0 28px; } @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-30%)} }
+    .time-band { border-bottom:1px solid var(--line); overflow:hidden; white-space:nowrap; padding:13px 0; }
+    .time-band-inner { display:inline-block; min-width:100%; color:var(--muted); font:700 11px/1.4 Manrope,sans-serif; text-transform:uppercase; letter-spacing:.13em; animation:marquee 24s linear infinite reverse; }
+    .time-band strong { color:var(--ink); margin:0 21px; }
+    section { padding:115px 0; }
+    .section-title { margin:0; font:600 clamp(30px,4vw,54px)/1.1 Unbounded; letter-spacing:-.06em; }
+    .section-lead { color:var(--muted); line-height:1.65; max-width:420px; margin:0; font-size:15px; }
+    .services-head, .contact-card { display:flex; justify-content:space-between; gap:45px; align-items:flex-start; }
+    .service-grid { display:grid; grid-template-columns:repeat(3,1fr); margin-top:58px; border-top:1px solid var(--line); }
+    .service { min-height:266px; padding:29px 28px 23px; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; transition:background .25s; }
+    .service:first-child { border-left:1px solid var(--line); } .service:hover { background:var(--white); }
+    .service-num { color:#8cae00; font:700 12px Unbounded; }
+    .service h3 { font:600 21px/1.2 Unbounded; letter-spacing:-.06em; margin:20px 0 9px; }
+    .service p { color:var(--muted); font-size:13px; line-height:1.6; margin:0; max-width:260px; }
+    .arrow { color:#89ab00; font-size:24px; margin-top:20px; }
+    .case-section { background:var(--surface); }
+    .case-head { display:flex; justify-content:space-between; align-items:end; gap:25px; margin-bottom:42px; }
+    .case-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:20px; }
+    .case { min-height:398px; border-radius:18px; position:relative; overflow:hidden; padding:25px; display:flex; flex-direction:column; justify-content:space-between; }
+    .case.dark { background:var(--case-dark); color:white; } .case.blue { background:var(--case-blue); color:#0e2737; }
+    [data-theme="dark"] .case.dark { color:#151719; } [data-theme="dark"] .case.blue { color:var(--ink); }
+    .case-label { display:flex; justify-content:space-between; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; }
+    .case h3 { margin:0; max-width:430px; font:600 clamp(25px,3vw,40px)/1.12 Unbounded; letter-spacing:-.06em; }
+    .case-art { position:absolute; right:31px; bottom:78px; pointer-events:none; }
+    .case.dark .case-art { width:201px; height:201px; border:18px solid var(--lime); border-radius:50%; box-shadow:37px -34px 0 -10px #efefed; transform:rotate(-27deg); }
+    .case.blue .case-art { width:177px; height:211px; border:12px solid #0e2737; border-radius:88px 88px 23px 23px; transform:rotate(18deg); }
+    [data-theme="dark"] .case.blue .case-art { border-color:var(--ink); }
+    .case.blue .case-art:after { content:"✦"; font-size:74px; position:absolute; top:49px; left:38px; }
+    .case-link { position:relative; z-index:1; font-size:13px; font-weight:800; }
+    .benefits { padding-bottom:120px; }
+    .benefit-list { margin-top:55px; border-top:1px solid var(--line); }
+    .benefit { display:grid; grid-template-columns:110px 1fr 1fr; align-items:center; min-height:114px; border-bottom:1px solid var(--line); gap:20px; }
+    .benefit-num { color:#8cae00; font:600 14px Unbounded; }
+    .benefit h3 { font:600 20px/1.2 Unbounded; letter-spacing:-.05em; margin:0; }
+    .benefit p { margin:0; color:var(--muted); font-size:13px; line-height:1.6; max-width:300px; }
+    .game-section { padding-top:0; }
+    .game-box { margin-top:48px; display:grid; grid-template-columns:1fr 320px; min-height:410px; border:1px solid var(--line); border-radius:20px; overflow:hidden; background:var(--white); }
+    .game-board { position:relative; min-height:410px; overflow:hidden; background-color:#1b1d1d; background-image:linear-gradient(rgba(215,255,57,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(215,255,57,.09) 1px, transparent 1px); background-size:34px 34px; }
+    .game-board:before { content:"const bugs = [];"; position:absolute; left:25px; top:21px; color:rgba(255,255,255,.35); font:600 13px/1 Unbounded,sans-serif; letter-spacing:-.06em; }
+    .game-bug { position:absolute; width:53px; height:53px; border:0; border-radius:50%; background:var(--lime); color:#151719; display:grid; place-items:center; font-size:26px; cursor:crosshair; box-shadow:0 5px 0 rgba(0,0,0,.3); animation:bug-pop .15s ease-out; transition:transform .12s; }
+    .game-bug:hover { transform:scale(1.12) rotate(12deg); }.game-bug:active { transform:scale(.82); }
+    @keyframes bug-pop { from { transform:scale(.2) rotate(-30deg); opacity:0; } to { transform:scale(1) rotate(0); opacity:1; } }
+    .game-info { padding:34px 30px; display:flex; flex-direction:column; justify-content:space-between; }
+    .game-kicker { color:#8cae00; font:700 11px Manrope,sans-serif; text-transform:uppercase; letter-spacing:.12em; }.game-info h3 { margin:10px 0 11px; font:600 28px/1.16 Unbounded,sans-serif; letter-spacing:-.065em; }.game-info p { color:var(--muted); font-size:13px; line-height:1.6; margin:0; }
+    .game-stats { display:flex; gap:19px; margin:28px 0; }.game-stat { font:600 27px/1 Unbounded,sans-serif; letter-spacing:-.08em; }.game-stat small { display:block; margin-top:7px; color:var(--muted); font:800 10px Manrope,sans-serif; text-transform:uppercase; letter-spacing:.1em; }.game-start { width:100%; }
+    [data-theme="dark"] .game-box { background:var(--white); }.game-ended { position:absolute; z-index:2; inset:0; display:grid; place-items:center; padding:25px; background:rgba(21,23,25,.83); color:var(--white); text-align:center; font:600 24px/1.3 Unbounded,sans-serif; letter-spacing:-.06em; }
+    .contact { padding:0 0 48px; }
+    .contact-card { background:var(--lime); padding:56px 61px; border-radius:20px; min-height:310px; align-items:stretch; }
+    .contact-card h2 { max-width:650px; }
+    .contact-side { min-width:260px; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; }
+    .contact-side p { font-size:13px; line-height:1.55; margin:0; max-width:240px; }
+    .button.light { background:var(--ink); } .button.light:hover { background:var(--white); }
+    footer { padding:26px 0 43px; display:flex; justify-content:space-between; font-size:12px; color:var(--muted); }
+    .chat-fab { position:fixed; z-index:10; right:28px; bottom:28px; width:62px; height:62px; border:0; border-radius:50%; background:var(--ink); color:var(--white); display:grid; place-items:center; box-shadow:0 12px 28px rgba(0,0,0,.18); cursor:pointer; transition:transform .2s, background .2s; }
+    .chat-fab:hover { transform:translateY(-4px) rotate(-4deg); background:#8eae00; color:#151719; }
+    .chat-fab svg { width:26px; height:26px; }
+    .chat-panel { position:fixed; z-index:11; right:28px; bottom:103px; width:min(380px, calc(100vw - 32px)); overflow:hidden; border:1px solid var(--line); border-radius:20px; background:var(--white); color:var(--ink); box-shadow:0 22px 60px rgba(0,0,0,.2); transform-origin:bottom right; animation:chat-in .22s ease-out; }
+    .chat-panel[hidden] { display:none; }
+    @keyframes chat-in { from { opacity:0; transform:translateY(12px) scale(.96); } to { opacity:1; transform:none; } }
+    .chat-head { display:flex; justify-content:space-between; align-items:center; padding:17px 18px; background:var(--ink); color:var(--white); }
+    .chat-status { display:flex; align-items:center; gap:9px; font-size:12px; font-weight:800; }.chat-status strong { display:block; font-size:13px; }.chat-status small { display:block; margin-top:2px; color:rgba(255,255,255,.65); font-weight:600; }
+    .chat-close { border:0; background:transparent; color:inherit; font-size:24px; cursor:pointer; line-height:1; padding:3px 6px; }
+    .chat-body { height:300px; padding:17px; overflow:auto; display:flex; flex-direction:column; gap:10px; background:linear-gradient(135deg, rgba(215,255,57,.08), transparent 45%); }
+    .chat-message { max-width:86%; padding:10px 12px; border-radius:12px; font-size:13px; line-height:1.5; }.chat-message.bot { align-self:flex-start; background:var(--paper); border-bottom-left-radius:3px; }.chat-message.user { align-self:flex-end; background:var(--lime); color:#151719; border-bottom-right-radius:3px; }
+    .chat-hints { display:flex; gap:7px; overflow:auto; padding:0 15px 13px; }.chat-hint { flex:none; border:1px solid var(--line); border-radius:100px; padding:7px 10px; background:transparent; color:var(--ink); font:700 11px Manrope,sans-serif; cursor:pointer; }.chat-hint:hover { background:var(--lime); color:#151719; border-color:var(--lime); }
+    .chat-form { display:flex; gap:8px; padding:12px 15px 15px; border-top:1px solid var(--line); }.chat-form input { min-width:0; flex:1; border:0; outline:0; background:transparent; color:var(--ink); font:500 13px Manrope,sans-serif; }.chat-form input::placeholder { color:var(--muted); }.chat-send { flex:none; width:37px; height:37px; border:0; border-radius:50%; background:var(--ink); color:var(--white); font-size:17px; cursor:pointer; }.chat-send:hover { background:#8eae00; color:#151719; }
+    .reveal { animation:rise .7s both; } .reveal:nth-child(2){animation-delay:.12s}.reveal:nth-child(3){animation-delay:.24s} @keyframes rise{from{opacity:0;transform:translateY(19px)}to{opacity:1;transform:none}}
+    @media (max-width:740px) {
+      .wrap { width:min(100% - 32px, 1180px); }.nav { height:72px; gap:10px; }.nav-links { display:none; }.nav-actions { gap:8px; }.nav-actions .button { min-height:42px; padding:0 12px; font-size:11px; }.theme-toggle { width:42px; height:42px; }.hero { min-height:600px; padding:58px 0 48px; }.hero:before { top:18px; right:-16px; bottom:28px; left:23%; opacity:.46; } h1 { font-size:40px; }.hero-bottom { align-items:end; }.hero-orbit { width:115px; height:115px; margin:0; }.hero-orbit:before { inset:19px; }.orbit-core { width:42px;height:42px;top:36px;left:36px;font-size:14px; }.hero-orbit:after { font-size:18px;top:5px;right:-2px; }.intro { font-size:14px; max-width:215px; }.services-head,.contact-card { display:block; }.section-lead { margin-top:19px; }.service-grid { grid-template-columns:1fr; }.service { min-height:205px; border-left:1px solid var(--line); border-bottom:1px solid var(--line); }.case-grid { grid-template-columns:1fr; }.case { min-height:320px; }.case-art { transform:scale(.75)!important; transform-origin:bottom right; right:7px!important; bottom:51px!important; }.benefit { grid-template-columns:51px 1fr; padding:20px 0; gap:10px; }.contact-card { padding:37px 28px; }.contact-side { min-height:155px; margin-top:31px; }.contact-card h2 { font-size:32px; } footer { flex-direction:column; gap:10px; }.band-inner { font-size:14px; }.chat-fab { right:16px; bottom:16px; width:56px; height:56px; }.chat-panel { right:16px; bottom:84px; }.chat-body { height:272px; }.benefit p { grid-column:2; }.game-box { grid-template-columns:1fr; margin-top:31px; }.game-board { min-height:310px; }.game-info { padding:29px 25px; }.game-stats { margin:23px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="logo" href="#top">code<i>.</i>works</a>
+    <nav class="nav-links"><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#about">О подходе</a></nav>
+    <div class="nav-actions"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Сменить тему">◐</button><a class="button" href="#contact">Обсудить проект <span style="margin-left:9px">↗</span></a></div>
+  </header>
+  <main id="top">
+    <section class="hero wrap">
+      <div>
+        <div class="eyebrow reveal"><span class="pulse"></span> разработка без лишнего шума</div>
+        <h1 class="reveal">Превращаю идеи<br>в <span class="marker">работающие</span><br>цифровые продукты.</h1>
+      </div>
+      <div class="hero-bottom reveal"><p class="intro">Сайты, сервисы и автоматизация для бизнеса, который хочет расти — быстро, понятно и с измеримым результатом.</p><div class="hero-orbit"><div class="orbit-core">&lt;/&gt;</div></div></div>
+    </section>
+    <div class="band"><div class="band-inner">WEB-САЙТЫ <b>✦</b> ИНТЕРНЕТ-МАГАЗИНЫ <b>✦</b> CRM И АВТОМАТИЗАЦИЯ <b>✦</b> WEB-САЙТЫ <b>✦</b> ИНТЕРНЕТ-МАГАЗИНЫ <b>✦</b> CRM И АВТОМАТИЗАЦИЯ <b>✦</b></div></div>
+    <div class="time-band" aria-label="Текущая дата и время"><div class="time-band-inner"><span class="live-datetime"></span><strong>✦</strong><span class="live-datetime"></span><strong>✦</strong><span class="live-datetime"></span><strong>✦</strong><span class="live-datetime"></span></div></div>
+    <section class="wrap" id="services">
+      <div class="services-head"><h2 class="section-title">Не просто пишу код.<br>Решаю задачи.</h2><p class="section-lead">Подключаюсь на любом этапе: от расплывчатой идеи до улучшения готового продукта.</p></div>
+      <div class="service-grid">
+        <article class="service"><span class="service-num">01</span><div><h3>Сайты, которые продают</h3><p>Лендинги, корпоративные сайты и магазины с понятной логикой и сильным дизайном.</p></div><span class="arrow">↗</span></article>
+        <article class="service"><span class="service-num">02</span><div><h3>Сервисы для работы</h3><p>Личные кабинеты, CRM и внутренние системы, которые экономят команде время.</p></div><span class="arrow">↗</span></article>
+        <article class="service"><span class="service-num">03</span><div><h3>Автоматизация рутины</h3><p>Связываю сервисы, данные и процессы так, чтобы всё работало само.</p></div><span class="arrow">↗</span></article>
+      </div>
+    </section>
+    <section class="case-section" id="cases"><div class="wrap"><div class="case-head"><h2 class="section-title">Проекты с характером</h2><a class="button" href="#contact">Хочу такой же</a></div><div class="case-grid"><article class="case dark"><div class="case-label"><span>FinFlow</span><span>Финтех · 2025</span></div><div class="case-art"></div><h3>Сервис, который делает финансы понятными</h3><a class="case-link" href="#contact">Смотреть кейс →</a></article><article class="case blue"><div class="case-label"><span>norte</span><span>e-commerce · 2024</span></div><div class="case-art"></div><h3>Магазин с душой маленького бренда</h3><a class="case-link" href="#contact">Смотреть кейс →</a></article></div></div></section>
+    <section class="wrap benefits" id="about"><h2 class="section-title">Как будет строиться работа</h2><div class="benefit-list"><div class="benefit"><span class="benefit-num">01</span><h3>Вникаю в задачу</h3><p>Сперва разберём цели, аудиторию и нужный результат — без шаблонных решений.</p></div><div class="benefit"><span class="benefit-num">02</span><h3>Делаю прозрачно</h3><p>Фиксируем этапы, сроки и стоимость. Вы всегда знаете, что происходит с проектом.</p></div><div class="benefit"><span class="benefit-num">03</span><h3>Не исчезаю после запуска</h3><p>Помогаю с развитием, поддержкой и следующими итерациями продукта.</p></div></div></section>
+    <section class="wrap game-section" aria-labelledby="game-title"><div class="services-head"><h2 class="section-title" id="game-title">Перерыв на<br>охоту за багами</h2><p class="section-lead">Небольшая демонстрация интерактивности: поймай как можно больше багов за 20 секунд.</p></div><div class="game-box"><div class="game-board" id="game-board" aria-label="Игровое поле"></div><div class="game-info"><div><span class="game-kicker">мини-игра</span><h3>Поймай<br>каждый баг</h3><p>Нажимайте на жуков, пока они не исчезли с поля.</p></div><div class="game-stats"><div class="game-stat"><span id="game-score">0</span><small>очков</small></div><div class="game-stat"><span id="game-time">20</span><small>секунд</small></div></div><button class="button game-start" id="game-start" type="button">Начать игру ↗</button></div></div></section>
+    <section class="contact wrap" id="contact"><div class="contact-card"><h2 class="section-title">Есть задача?<br>Давайте разложим<br>её на <span style="text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:7px">решения.</span></h2><div class="contact-side"><p>Опишите идею в двух строках — отвечу в течение рабочего дня и предложу следующий шаг.</p><a class="button light" href="mailto:hello@codeworks.dev?subject=Новый%20проект">Написать в почту ↗</a></div></div></section>
+  </main>
+  <footer class="wrap"><span>© 2026 code.works</span><span>Разработка, которая двигает вперёд</span></footer>
+  <button class="chat-fab" id="chat-toggle" type="button" aria-label="Открыть демонстрационный чат" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5c-1.2 0-2.33-.28-3.33-.79L4 20l1.79-4.13A7.47 7.47 0 0 1 5 12.5 7.5 7.5 0 0 1 12.5 5h.3A7.2 7.2 0 0 1 20 11.5Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-linecap="round" stroke-width="2.5"/></svg>
+  </button>
+  <aside class="chat-panel" id="chat-panel" aria-label="Демонстрационный чат" hidden>
+    <div class="chat-head"><div class="chat-status"><span class="pulse"></span><span><strong>Помощник code.works</strong><small>Демо · отвечает мгновенно</small></span></div><button class="chat-close" id="chat-close" type="button" aria-label="Закрыть чат">×</button></div>
+    <div class="chat-body" id="chat-messages" aria-live="polite"><div class="chat-message bot">Привет! Я демо-помощник. Могу рассказать о сайтах, сроках, стоимости и автоматизации.</div></div>
+    <div class="chat-hints"><button class="chat-hint" type="button">Сколько стоит сайт?</button><button class="chat-hint" type="button">Какие сроки?</button><button class="chat-hint" type="button">Нужен интернет-магазин</button></div>
+    <form class="chat-form" id="chat-form"><input id="chat-input" type="text" autocomplete="off" placeholder="Напишите сообщение…" aria-label="Ваше сообщение"><button class="chat-send" type="submit" aria-label="Отправить сообщение">↑</button></form>
+  </aside>
+  <script>
+    const toggle = document.querySelector('#theme-toggle');
+    const savedTheme = localStorage.getItem('codeworks-theme');
+    const setTheme = (theme) => {
+      document.documentElement.dataset.theme = theme;
+      const dark = theme === 'dark';
+      toggle.textContent = dark ? '☀' : '◐';
+      toggle.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
+    };
+    setTheme(savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    toggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('codeworks-theme', next);
+      setTheme(next);
+    });
+    const clock = new Intl.DateTimeFormat('ru-RU', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    const updateClock = () => {
+      document.querySelectorAll('.live-datetime').forEach((item) => {
+        item.textContent = `сегодня — ${clock.format(new Date())}`;
+      });
+    };
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    const chatToggle = document.querySelector('#chat-toggle');
+    const chatPanel = document.querySelector('#chat-panel');
+    const chatClose = document.querySelector('#chat-close');
+    const chatForm = document.querySelector('#chat-form');
+    const chatInput = document.querySelector('#chat-input');
+    const chatMessages = document.querySelector('#chat-messages');
+    const addChatMessage = (text, sender) => {
+      const message = document.createElement('div');
+      message.className = `chat-message ${sender}`;
+      message.textContent = text;
+      chatMessages.append(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+    const demoReply = (text) => {
+      const query = text.toLowerCase();
+      if (/цен|стоим|бюджет|прайс/.test(query)) return 'Стоимость зависит от объёма задачи. Лендинг обычно можно обсудить от 40 000 ₽, а точную оценку дам после короткого брифа.';
+      if (/срок|когда|быстро|долго/.test(query)) return 'Лендинг обычно занимает 1–2 недели. Сервис или интернет-магазин — от 3 недель. Согласуем реалистичный план до старта.';
+      if (/магазин|e-commerce|товар/.test(query)) return 'Да, могу создать интернет-магазин: каталог, корзина, оплата, доставка и удобная админка — только то, что действительно нужно вашему бизнесу.';
+      if (/автомат|crm|интеграц/.test(query)) return 'Автоматизирую повторяющиеся процессы: заявки, уведомления, таблицы, CRM и связки между сервисами. Расскажите, что отнимает больше всего времени.';
+      if (/сайт|лендинг|страниц/.test(query)) return 'Сделаю сайт с понятной структурой, быстрым интерфейсом и адаптацией для смартфонов. Начнём с цели сайта и ваших примеров.';
+      if (/привет|здравствуй|добрый/.test(query)) return 'Привет! Чем могу помочь: сайт, сервис, магазин или автоматизация?';
+      return 'Хороший вопрос. В демо-чате ответы ограничены, но вы можете описать задачу в письме — так получится обсудить детали предметно.';
+    };
+    const setChatOpen = (open) => {
+      chatPanel.hidden = !open;
+      chatToggle.setAttribute('aria-expanded', String(open));
+      chatToggle.setAttribute('aria-label', open ? 'Закрыть демонстрационный чат' : 'Открыть демонстрационный чат');
+      if (open) chatInput.focus();
+    };
+    chatToggle.addEventListener('click', () => setChatOpen(chatPanel.hidden));
+    chatClose.addEventListener('click', () => setChatOpen(false));
+    chatForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      addChatMessage(text, 'user');
+      chatInput.value = '';
+      window.setTimeout(() => addChatMessage(demoReply(text), 'bot'), 280);
+    });
+    document.querySelectorAll('.chat-hint').forEach((hint) => hint.addEventListener('click', () => {
+      const text = hint.textContent.trim();
+      addChatMessage(text, 'user');
+      window.setTimeout(() => addChatMessage(demoReply(text), 'bot'), 280);
+    }));
+
+    const gameBoard = document.querySelector('#game-board');
+    const gameStart = document.querySelector('#game-start');
+    const gameScore = document.querySelector('#game-score');
+    const gameTime = document.querySelector('#game-time');
+    let gameTimer;
+    let bugTimer;
+    const clearBugs = () => gameBoard.querySelectorAll('.game-bug, .game-ended').forEach((item) => item.remove());
+    const spawnBug = () => {
+      const bug = document.createElement('button');
+      bug.className = 'game-bug';
+      bug.type = 'button';
+      bug.setAttribute('aria-label', 'Поймать баг');
+      bug.textContent = ['🐛', '🪲', '⚠'][Math.floor(Math.random() * 3)];
+      bug.style.left = `${8 + Math.random() * 80}%`;
+      bug.style.top = `${18 + Math.random() * 66}%`;
+      bug.addEventListener('click', () => {
+        gameScore.textContent = String(Number(gameScore.textContent) + 1);
+        bug.remove();
+      }, { once: true });
+      gameBoard.append(bug);
+      window.setTimeout(() => bug.remove(), 1050);
+    };
+    gameStart.addEventListener('click', () => {
+      window.clearInterval(gameTimer);
+      window.clearInterval(bugTimer);
+      clearBugs();
+      let seconds = 20;
+      gameScore.textContent = '0';
+      gameTime.textContent = String(seconds);
+      gameStart.disabled = true;
+      gameStart.textContent = 'Игра идёт…';
+      spawnBug();
+      bugTimer = window.setInterval(spawnBug, 620);
+      gameTimer = window.setInterval(() => {
+        seconds -= 1;
+        gameTime.textContent = String(seconds);
+        if (seconds > 0) return;
+        window.clearInterval(gameTimer);
+        window.clearInterval(bugTimer);
+        clearBugs();
+        const result = document.createElement('div');
+        result.className = 'game-ended';
+        result.textContent = `Готово! Поймано багов: ${gameScore.textContent}`;
+        gameBoard.append(result);
+        gameStart.disabled = false;
+        gameStart.textContent = 'Сыграть ещё раз ↗';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
