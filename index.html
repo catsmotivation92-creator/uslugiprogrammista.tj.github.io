@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#151719; --muted:#6f716d; --lime:#d7ff39; --paper:#f5f4ef; --white:#fffefa; --line:rgba(21,23,25,.14); --surface:#deded8; --case-dark:#20252a; --case-blue:#7399ba; }
-    [data-theme="dark"] { --ink:#f7f7f2; --muted:#b1b1aa; --lime:#d7ff39; --paper:#101111; --white:#1a1b1b; --line:rgba(247,247,242,.18); --surface:#202120; --case-dark:#f4f4ef; --case-blue:#343635; }
+    :root { --ink:#151719; --muted:#6f716d; --lime:#b7d876; --cta:#a6c477; --paper:#f5f4ef; --white:#fffefa; --line:rgba(21,23,25,.14); --surface:#deded8; --case-dark:#20252a; --case-blue:#7399ba; }
+    [data-theme="dark"] { --ink:#f7f7f2; --muted:#b1b1aa; --lime:#b7d876; --cta:#8fa965; --paper:#101111; --white:#1a1b1b; --line:rgba(247,247,242,.18); --surface:#202120; --case-dark:#f4f4ef; --case-blue:#343635; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; background:var(--paper); color:var(--ink); font-family:Manrope,Arial,sans-serif; overflow-x:hidden; }
@@ -90,7 +90,7 @@
     .game-stats { display:flex; gap:19px; margin:28px 0; }.game-stat { font:600 27px/1 Unbounded,sans-serif; letter-spacing:-.08em; }.game-stat small { display:block; margin-top:7px; color:var(--muted); font:800 10px Manrope,sans-serif; text-transform:uppercase; letter-spacing:.1em; }.game-start { width:100%; }
     [data-theme="dark"] .game-box { background:var(--white); }.game-ended { position:absolute; z-index:2; inset:0; display:grid; place-items:center; padding:25px; background:rgba(21,23,25,.83); color:var(--white); text-align:center; font:600 24px/1.3 Unbounded,sans-serif; letter-spacing:-.06em; }
     .contact { padding:0 0 48px; }
-    .contact-card { background:var(--lime); padding:56px 61px; border-radius:20px; min-height:310px; align-items:stretch; }
+    .contact-card { background:var(--cta); color:#151719; padding:56px 61px; border-radius:20px; min-height:310px; align-items:stretch; }
     .contact-card h2 { max-width:650px; }
     .contact-side { min-width:260px; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; }
     .contact-side p { font-size:13px; line-height:1.55; margin:0; max-width:240px; }
